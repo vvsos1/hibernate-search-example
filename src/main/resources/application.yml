@@ -1,0 +1,30 @@
+server:
+  port: 80
+
+spring:
+  datasource:
+    url: "jdbc:h2:file:./database"
+    username: "sa"
+    password: ""
+    driver-class-name: org.h2.Driver
+  jpa:
+    properties:
+      hibernate:
+        search:
+          backend:
+            type: lucene
+            lucene_version: 8.11.1
+            directory.root: ./data/index
+            analysis.configurer: class:com.example.hibernatesearchexample.book.adapter.out.persistence.LuceneKoreanAnalysisConfigurer
+    hibernate:
+      ddl-auto: create-drop
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: deferred
+
+
+#logging:
+#  level:
+#    org.hibernate: debug
+#    apache.lucene: debug
